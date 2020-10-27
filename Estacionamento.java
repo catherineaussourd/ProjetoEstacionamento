@@ -6,49 +6,62 @@ public class Estacionamento { // 50 vagas
     int[]especial =  new int[10];
     Registro[]Banco = new Registro[900000];
     
-    public int verificarVaga(Registro r){
-        int R;
-        if(r.especial()){
+    public int verificarVaga(int v){
+        int v0;
+        if(v == 1){
             int i;
             for (i = 0 ; i < especial.length ; i = i + 1) {
                 if(especial[i] == 0){
-                    R = 3;
+                    v0 = i;
                 }
-            }R = 30;
+            }v0 = -1; // Sem vagas
         }
-        else if(r.moto()){
+        else if(v == 2){
             int i;
             for (i = 0 ; i < moto.length ; i = i + 1) {
                 if(moto[i] == 0){
-                    R = 2;
+                    v0 = i;
                 }
-            }R = 20;
+            }v0 = -1; // Sem vagas
         }else{
             int i;
             for (i = 0 ; i < carro.length ; i = i + 1) {
                 if(carro[i] == 0){
-                    R = 1;
+                    v0 = i;
                 }
-            }R = 10;
+            }v0 = -1; // Sem vagas
         }
+        return v0;
+    }
+    
+    public int TipoVaga(Registro r){
+        int R;
+        if(r.especial()) { R = 1; }
+        
+        else if(r.moto()) { R = 2; }
+
+        else { R = 3; }
+
         return R;
     }
     
-    public void acessarRegistro(int M, int S){
+    
+    
+    public int acessarRegistro(int M, int S){
+        Registro aluno;
+        int R = 0;
         if(verificarRegistro(M)){
             int i;
             for (i = 0 ; i < Banco.length ; i = i + 1) {
                 if(Banco[i].matricula() == M){
                     if(Banco[i].senha() == S){
-                        verificarVaga(Banco[i]);
-                        break;
-                    }else{
-                        System.out.println("Senha incorreta");
-                        break;
-                    }
+                        aluno = getRegistro(M);
+                        R = TipoVaga(aluno);
+                    }else{ R = 4;} // 4 Senha incorreta
                 }
             }
-        }else{ System.out.println("Aluno não registrado"); }
+        }else{ } // 0 Aluno não registrado
+        return R;
     }
     
     public void registrar(Registro r){
@@ -62,6 +75,17 @@ public class Estacionamento { // 50 vagas
                 }
             }
         }
+    }
+    
+    public Registro getRegistro(int M){
+        Registro R = Banco[0];
+        int i;
+        for (i = 0 ; i < Banco.length ; i = i + 1) {
+            if(Banco[i].matricula() == M){
+                R = Banco[i];
+            }
+        }
+        return R;
     }
     
     public boolean verificarRegistro(Registro r){
