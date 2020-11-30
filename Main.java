@@ -5,8 +5,8 @@ public class Main {
     public static void main (String[]args) {
         Estacionamento E = new Estacionamento();
         char r;
-        int M;
-        int S;
+        int M; //matrícula
+        int S; //senha
         boolean L = false;
         
         do{
