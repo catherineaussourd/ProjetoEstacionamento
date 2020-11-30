@@ -4,7 +4,7 @@ public class Main {
     public static Scanner in = new Scanner (System.in);
     public static void main (String[]args) {
         Estacionamento E = new Estacionamento();
-        char r;
+        char r; //resposta
         int M; //matrícula
         int S; //senha
         boolean L = false;
@@ -21,7 +21,7 @@ public class Main {
             
             switch(r) {
                 case '0':
-                    int v;
+                    int v; //vagas
                     System.out.print("Informe sua Matricula: ");
                     M = in.nextInt();
                     System.out.print("Informe sua Senha: ");
@@ -59,14 +59,14 @@ public class Main {
                     break;
                 
                 case '1':
-                    String N;
-                    int I;
-                    boolean e;
+                    String N; //Nome
+                    int I; //idade
+                    boolean e; //especial ou n
                     int te;
-                    String AM;
-                    String AP;
-                    boolean Ab;
-                    int tAb;
+                    String AM; //aluno marca automovel
+                    String AP; //aluno placa automovel
+                    boolean Ab; //variavel "?"
+                    int tAb; //moto?
                 
                     System.out.print("Informe seu Nome: ");
                     N = in.nextLine();
