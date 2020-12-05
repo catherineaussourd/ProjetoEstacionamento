@@ -1,12 +1,18 @@
-package SistemaEstacionamento;
+package SistemaEstacionamento.apresentacao;
+import SistemaEstacionamento.Estacionamento;
+import SistemaEstacionamento.TipoVeiculo;
+import SistemaEstacionamento.repositorio.Registro;
 import java.util.Scanner;
+
 public class Main {
+    
     public static Scanner in = new Scanner (System.in);
+    
     public static void main (String[]args) {
-        Estacionamento E = new Estacionamento();
-        char r; //resposta
-        int M; //matrícula
-        int S; //senha
+        Estacionamento vEspecial = new Estacionamento();
+        char resposta;
+        int matricula;
+        int senha;
         boolean L = false;
         
         do{
@@ -16,22 +22,22 @@ public class Main {
                     + "Digite - 1 (Para registrar-se)\n"       
                     + "Digite - 2 (Para sair do Menu)\n");
             System.out.print("Resposta: ");
-            r = in.next().charAt(0);
+            resposta = in.next().charAt(0);
             System.out.println("\n");
             
-            switch(r) {
+            switch(resposta) {
                 case '0':
-                    int v; //vagas
+                    int v;
                     System.out.print("Informe sua Matricula: ");
-                    M = in.nextInt();
+                    matricula = in.nextInt();
                     System.out.print("Informe sua Senha: ");
-                    S = in.nextInt();
-                    v = E.acessarRegistro(M,S);
+                    senha = in.nextInt();
+                    v = vEspecial.acessarRegistro(matricula,senha);
                     if(v == 0){
                         System.out.println("Aluno não registrado");
                     }else if(v == 1){
                         int v0;
-                        v0 = E.verificarVaga(v);
+                        v0 = vEspecial.verificarVaga(TipoVeiculo.valueOf(v));
                         if(v0 == -1){
                             System.out.println("Não há vagas Especiais disponíveis");
                         }else{
@@ -39,7 +45,7 @@ public class Main {
                         }
                     }else if(v == 2){
                         int v0;
-                        v0 = E.verificarVaga(v);
+                        v0 = vEspecial.verificarVaga(TipoVeiculo.valueOf(v));
                         if(v0 == -1){
                             System.out.println("Não há vagas para Moto disponíveis");
                         }else{
@@ -47,7 +53,7 @@ public class Main {
                         }
                     }else if(v == 3){
                         int v0;
-                        v0 = E.verificarVaga(v);
+                        v0 = vEspecial.verificarVaga(TipoVeiculo.valueOf(v));
                         if(v0 == -1){
                             System.out.println("Não há vagas para Carro disponíveis");
                         }else{
@@ -59,40 +65,51 @@ public class Main {
                     break;
                 
                 case '1':
-                    String N; //Nome
-                    int I; //idade
-                    boolean e; //especial ou n
-                    int te;
-                    String AM; //aluno marca automovel
-                    String AP; //aluno placa automovel
-                    boolean Ab; //variavel "?"
-                    int tAb; //moto?
+                    String nome;
+                    int idade;
+                    boolean especial;
+                    int ehEspecial;
+                    String marcaAutomovel;
+                    String placaAutomovel;
+                    boolean ehMoto;
+                    int moto;
                 
                     System.out.print("Informe seu Nome: ");
-                    N = in.nextLine();
+                    nome = in.nextLine();
+                    
                     System.out.print("Informe sua Idade: ");
-                    I = in.nextInt();
+                    idade = in.nextInt();
+                    
                     System.out.print("Informe sua Matricula: ");
-                    M = in.nextInt();
+                    matricula = in.nextInt();
+                    
                     System.out.print("Informe sua Senha: ");
-                    S = in.nextInt();
+                    senha = in.nextInt();
+                    
                     System.out.print("Você é um aluno especial? (0 - Sim) / (1 - Não) ");
-                    te = in.nextInt();
-                    if(te == 0){ e = true; }
-                    else{ e = false; }
+                    ehEspecial = in.nextInt();
+                    
+                    if(ehEspecial == 0){ especial = true; }
+                    else{ especial = false; }
+                    
                     System.out.print("Informe a Marca do Automovel: ");
-                    AM = in.nextLine();
+                    marcaAutomovel = in.nextLine();
+                    
                     System.out.print("Informe a Placa do Automovel: ");
-                    AP = in.nextLine();
+                    placaAutomovel = in.nextLine();
+                    
                     System.out.print("Seu automovel é uma moto? (0 - Sim) / (1 - Não) ");
-                    tAb = in.nextInt();
-                    if(tAb == 0){ Ab = true; }
-                    else{ Ab = false; }
+                    moto = in.nextInt();
+                    
+                    if(moto == 0){ 
+                        ehMoto = true;}
+                    else{ ehMoto = false; }
               
-                    Registro R = new Registro(N, I, M, S, e, AM, AP, Ab);
-                    E.registrar(R);
+                    Registro R = new Registro(nome, idade, matricula, senha, especial, marcaAutomovel, placaAutomovel, ehMoto);
+                    vEspecial.registrar(R);
                     L = true;
                     break;
+                    
                 case '2':
                    break;
             }

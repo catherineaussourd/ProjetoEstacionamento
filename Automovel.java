@@ -3,42 +3,46 @@ package SistemaEstacionamento;
 public class Automovel {
     String Marca;
     String Placa;
-    boolean Moto;
+    String Moto;
     
     
-    public Automovel(String M, String P, boolean b){
-        if( M != null){
-            this.Marca = M;
+    public Automovel(String marca, String placa, String moto ){
+        if( marca != null){
+            this.Marca = marca;
         }
-        if( P != null){
-            this.Placa = P;
+        if( placa != null){
+            this.Placa = placa;
         }
-        this.Moto = b;
+        this.Moto = moto;
     }
     
     public String getMarca(){
         return this.Marca;
     }
-    public void setMarca(String M){
-        if( M != null){
-            this.Marca = M;
+    public void setMarca(String marca){
+        if( marca != null){
+            this.Marca = marca;
         }
     }
     
     public String getPlaca(){
         return this.Placa;
     }
-    public void setPlaca(String P){
-        if( P != null){
-            this.Placa = P;
+    public void setPlaca(String placa){
+        if( placa != null){
+            this.Placa = placa;
         }
     }
     
-    public boolean getMoto(){
+    public String getMoto(){
         return this.Moto;
     }
     
-    public void setMoto(boolean b){
-        this.Moto = b;
+    public void setMoto(String moto){
+        this.Moto = moto;
+    }
+
+    public void setMoto(boolean alunoEspecial) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

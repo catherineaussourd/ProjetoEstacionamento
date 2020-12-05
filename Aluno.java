@@ -10,36 +10,36 @@ public class Aluno {
     private int idade;
     private int matricula;
     private int senha;
-    private boolean especial;
+    private int especial;
     
     
-    public Aluno(String N, int I, int M, int S, boolean E){
-        if(N != null){
-            this.nome = N;
+    public Aluno(String nome, int idade, int matricula, int senha, int especial){
+        if(nome != null){
+            this.nome = nome;
         }
         
-        if(I >= IDADE_MIN){
-            this.idade = I;
+        if(idade >= IDADE_MIN){
+            this.idade = idade;
         }
         
-        if(M >= MATRICULA_MIN && M <= MATRICULA_MAX){
-            this.matricula = M;
+        if(matricula >= MATRICULA_MIN && matricula <= MATRICULA_MAX){
+            this.matricula = matricula;
         }
         
-        if(S >= SENHA_MIN && S <= SENHA_MAX){
-            this.senha = S;
+        if(senha >= SENHA_MIN && senha <= SENHA_MAX){
+            this.senha = senha;
         }
         
-        this.especial = E;
+        this.especial = especial;
     }
     
     public String getNome(){
         return this.nome;
     }
     
-    public void setNome(String N){
-        if(N != null){
-            this.nome = N;
+    public void setNome(String nome){
+        if(nome != null){
+            this.nome = nome;
         }
     }
     
@@ -47,9 +47,9 @@ public class Aluno {
         return this.idade;
     }
     
-    public void setIdade(int I){
-        if(I >= IDADE_MIN){
-            this.idade = I;
+    public void setIdade(int idade){
+        if(idade >= IDADE_MIN){
+            this.idade = idade;
         }
     }
     
@@ -57,9 +57,9 @@ public class Aluno {
         return this.matricula;
     }
     
-    public void setMatricula(int M){
-        if(M >= MATRICULA_MIN && M <= MATRICULA_MAX){
-            this.matricula = M;
+    public void setMatricula(int matricula){
+        if(matricula >= MATRICULA_MIN && matricula <= MATRICULA_MAX){
+            this.matricula = matricula;
         }
     }
     
@@ -67,17 +67,17 @@ public class Aluno {
         return this.senha;
     }
     
-    public void setSenha(int S){
-        if(S >= SENHA_MIN && S <= SENHA_MAX){
-            this.senha = S;
+    public void setSenha(int senha){
+        if(senha >= SENHA_MIN && senha <= SENHA_MAX){
+            this.senha = senha;
         }
     }
     
-    public boolean getEspecial(){
+    public int getEspecial(){
         return this.especial;
     }
     
-    public void setEspecial(boolean E){
-        this.especial = E;
+    public void setEspecial(int especial){
+        this.especial = especial;
     }
 }
