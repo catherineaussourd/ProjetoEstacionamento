@@ -1,4 +1,3 @@
-package SistemaEstacionamento;
 
 public class Aluno {
     private static final int IDADE_MIN = 16;
@@ -6,78 +5,78 @@ public class Aluno {
     private static final int MATRICULA_MAX = 999999;
     private static final int SENHA_MIN = 1000;
     private static final int SENHA_MAX = 9999;
-    private String nome;
-    private int idade;
-    private int matricula;
-    private int senha;
-    private int especial;
+    private String aNome;
+    private int aIdade;
+    private int aMatricula;
+    private int aSenha;
+    private boolean aEspecial;
     
-    
-    public Aluno(String nome, int idade, int matricula, int senha, int especial){
-        if(nome != null){
-            this.nome = nome;
+    public Aluno(String pNome, int pIdade, int pMatricula, int pSenha, boolean pEspecial){
+        if(pNome != null){
+            this.aNome = pNome;
         }
         
-        if(idade >= IDADE_MIN){
-            this.idade = idade;
+        if(pIdade >= IDADE_MIN){
+            this.aIdade = pIdade;
         }
         
-        if(matricula >= MATRICULA_MIN && matricula <= MATRICULA_MAX){
-            this.matricula = matricula;
+        if(pMatricula >= MATRICULA_MIN && pMatricula <= MATRICULA_MAX){
+            this.aMatricula = pMatricula;
         }
         
-        if(senha >= SENHA_MIN && senha <= SENHA_MAX){
-            this.senha = senha;
+        if(pSenha >= SENHA_MIN && pSenha <= SENHA_MAX){
+            this.aSenha = pSenha;
         }
         
-        this.especial = especial;
+        this.aEspecial = pEspecial;
     }
     
     public String getNome(){
-        return this.nome;
+        return this.aNome;
     }
     
     public void setNome(String nome){
         if(nome != null){
-            this.nome = nome;
+            this.aNome = nome;
         }
     }
     
     public int getIdade(){
-        return this.idade;
+        return this.aIdade;
     }
     
     public void setIdade(int idade){
         if(idade >= IDADE_MIN){
-            this.idade = idade;
+            this.aIdade = idade;
         }
     }
     
     public int getMatricula(){
-        return this.matricula;
+        return this.aMatricula;
     }
     
-    public void setMatricula(int matricula){
-        if(matricula >= MATRICULA_MIN && matricula <= MATRICULA_MAX){
-            this.matricula = matricula;
+    public void setMatricula(int pMatricula){
+        if(pMatricula >= MATRICULA_MIN && pMatricula <= MATRICULA_MAX){
+            this.aMatricula = pMatricula;
         }
     }
     
-    public int getSenha(){
-        return this.senha;
+    public boolean validaSenha(int pSenha){
+        return this.aSenha == pSenha;
     }
     
-    public void setSenha(int senha){
-        if(senha >= SENHA_MIN && senha <= SENHA_MAX){
-            this.senha = senha;
+    public void setSenha(int pSenha){
+        if(pSenha >= SENHA_MIN && pSenha <= SENHA_MAX){
+            this.aSenha = pSenha;
         }
     }
     
-    public int getEspecial(){
-        return this.especial;
+    public boolean getEspecial(){
+        return this.aEspecial;
     }
     
-    public void setEspecial(int especial){
-        this.especial = especial;
+    public void setEspecial(boolean pEspecial){
+        this.aEspecial = pEspecial;
     }
+    
 }
