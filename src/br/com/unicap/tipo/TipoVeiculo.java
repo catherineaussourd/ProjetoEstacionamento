@@ -1,3 +1,4 @@
+package br.com.unicap.tipo;
 
 public enum TipoVeiculo {
 	ESPECIAL(1), MOTO(2), CARRO(3);

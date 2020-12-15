@@ -1,11 +1,12 @@
+package br.com.unicap.estacionamento;
 
 public class Automovel {
 
 	String aMarca;
 	String aPlaca;
-	String aMoto;
+	boolean aMoto;
 
-	public Automovel(String marca, String placa, String moto) {
+	public Automovel(String marca, String placa, boolean moto) {
 		if (marca != null) {
 			this.aMarca = marca;
 		}
@@ -35,16 +36,12 @@ public class Automovel {
 		}
 	}
 
-	public String getMoto() {
+	public boolean isMoto() {
 		return this.aMoto;
 	}
 
-	public void setMoto(String moto) {
+	public void setMoto(boolean moto) {
 		this.aMoto = moto;
 	}
 
-	public void setMoto(boolean alunoEspecial) {
-		throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
-																		// Tools | Templates.
-	}
 }

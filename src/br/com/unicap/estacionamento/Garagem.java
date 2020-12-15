@@ -1,3 +1,5 @@
+package br.com.unicap.estacionamento;
+
 import java.util.HashMap;
 
 public class Garagem {
@@ -20,10 +22,12 @@ public class Garagem {
 	}
 	
 	public void remover(String pPlaca) {
+
 		this.aGaragem.remove(pPlaca);
 	}
 	
 	public Automovel busca(String pPlaca) {
+
 		return this.aGaragem.get(pPlaca);
 	}
 	

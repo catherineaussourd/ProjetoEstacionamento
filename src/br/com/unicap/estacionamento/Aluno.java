@@ -1,31 +1,43 @@
+package br.com.unicap.estacionamento;
+
+import br.com.unicap.exception.InvalidDataException;
 
 public class Aluno {
-    private static final int IDADE_MIN = 16;
-    private static final int MATRICULA_MIN = 100000;
-    private static final int MATRICULA_MAX = 999999;
-    private static final int SENHA_MIN = 1000;
-    private static final int SENHA_MAX = 9999;
+
+    private static final int IDADE_MIN = 18;
+    private static final int MATRICULA_MIN = 1000000000;
+    private static final int MATRICULA_MAX = 2099999999;
+    private static final int SENHA_MIN = 1000000000;
+    private static final int SENHA_MAX = 2099999999;
     private String aNome;
     private int aIdade;
     private int aMatricula;
     private int aSenha;
     private boolean aEspecial;
     
-    public Aluno(String pNome, int pIdade, int pMatricula, int pSenha, boolean pEspecial){
+    public Aluno(String pNome, int pIdade, int pMatricula, int pSenha, boolean pEspecial) throws InvalidDataException {
         if(pNome != null){
             this.aNome = pNome;
+        } else {
+            throw new InvalidDataException("\nNome não pode ser vazio");
         }
         
         if(pIdade >= IDADE_MIN){
             this.aIdade = pIdade;
+        } else {
+            throw new InvalidDataException("\nIdade não pode ser menor do que " + IDADE_MIN + " anos");
         }
         
         if(pMatricula >= MATRICULA_MIN && pMatricula <= MATRICULA_MAX){
             this.aMatricula = pMatricula;
+        } else {
+            throw new InvalidDataException("\nMatrícula tem que estar entre " + MATRICULA_MIN + " e " + MATRICULA_MAX);
         }
         
         if(pSenha >= SENHA_MIN && pSenha <= SENHA_MAX){
             this.aSenha = pSenha;
+        } else {
+            throw new InvalidDataException("\nSenha tem que estar entre " + SENHA_MIN + " e " + SENHA_MAX);
         }
         
         this.aEspecial = pEspecial;
