@@ -8,147 +8,163 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static Scanner in = new Scanner(System.in);
+    public static Scanner in = new Scanner(System.in);
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		Estacionamento estacionamento = new Estacionamento();
-		int resposta;
-		boolean L = false;
+        Estacionamento estacionamento = new Estacionamento();
+        int resposta;
+        boolean L = false;
 
-		do {
-			try {
-				System.out.println("\n< E S T A C I O N A M E N T O >\n" + "0 - Acessar vagas disponiveis\n"
-						+ "1 - Cadastro \n" + "2 - Saída de veículo\n" + "3 - Sair da aplicação\n");
-				System.out.print("Resposta: ");
-				resposta = in.next().charAt(0);
-				System.out.println("\n");
+        do {
+            try {
+                System.out.println("\n< E S T A C I O N A M E N T O >\n" + "0 - Cadastrar um veículo\n" + "1 - Estacionar em uma vaga\n"
+                        +"2 - Listar Carro\n" + "3 - Remover veículo\n" + "4 - Sair da aplicação\n");
+                System.out.print("Resposta: ");
+                resposta = in.next().charAt(0);
+                System.out.println("\n");
 
-				// Buffer cls
-				in.nextLine();
+                // Buffer cls
+                in.nextLine();
 
-				switch (resposta) {
-					case '0':
-						acessarVagasDisponiveis(estacionamento);
-						break;
-					case '1':
-						cadastrarAluno(estacionamento);
-						L = true;
-						break;
-					case '2':
-						saidaVeiculo(estacionamento);
-						break;
-					case '3':
-                                                default:
-						break;
-				}
-			} catch (InvalidDataException e){
-				System.out.println(e.getMessage());
-				L = true;
-			}
-		} while (L);
+                switch (resposta) {
+                    case '0':
+                        cadastrarAluno(estacionamento);
+                        L = true;
+                        break;
+                    case '1':
+                        acessarVagasDisponiveis(estacionamento);
+                        L = true;
+                        break;
+                    case '2':
+                        listarCarros(estacionamento);
+                        break;
+                    case '3':
+                        saidaVeiculo(estacionamento);
+                        break;
+                    case '4':
+                    default:
+                        break;
+                }
+            } catch (InvalidDataException e) {
+                System.out.println(e.getMessage());
+                L = true;
+            }
+        } while (L);
 
-	}
-	private static void acessarVagasDisponiveis(Estacionamento estacionamento) {
+    }
 
-		int matricula;
+    private static void acessarVagasDisponiveis(Estacionamento estacionamento) {
 
-		int senha;
+        int matricula;
 
-		Registro reg;
+        int senha;
 
-		System.out.print("Informe sua Matricula: ");
-		matricula = in.nextInt();
+        Registro reg;
 
-		System.out.print("Informe sua Senha: ");
-		senha = in.nextInt();
+        System.out.print("Informe sua Matricula: ");
+        matricula = in.nextInt();
 
-		reg = estacionamento.acessarRegistro(matricula, senha);
+        System.out.print("Informe sua Senha: ");
+        senha = in.nextInt();
 
-		if (reg == null) {
-			System.out.println("\nAluno não registrado");
-		} else if (reg.getaTipo() != null) {
-			boolean v0;
-			v0 = estacionamento.verificarVaga(reg);
-			if (!v0) {
-				System.out.println("\nNão há vagas Especiais disponíveis");
-			} else {
-				System.out.println("\nPode estacionar! ");
-			}
-		} else {
-			System.out.println("\nSenha incorreta");
-		}
-	}
+        reg = estacionamento.acessarRegistro(matricula, senha);
 
-	private static void cadastrarAluno(Estacionamento estacionamento) throws InvalidDataException {
+        if (reg == null) {
+            System.out.println("\nAluno não registrado");
+        } else if (reg.getaTipo() != null) {
+            boolean v0;
+            v0 = estacionamento.verificarVaga(reg);
+            if (!v0) {
+                System.out.println("\nNão há vagas Especiais disponíveis");
+            } else {
+                System.out.println("\nPode estacionar! ");
+            }
+        } else {
+            System.out.println("\nSenha incorreta");
+        }
+    }
 
-		String nome;
-		int idade;
-		boolean especial;
-		int ehEspecial;
-		String marcaAutomovel;
-		String placaAutomovel;
-		boolean isMoto;
-		int moto;
-		int matricula;
-		int senha;
+    private static void cadastrarAluno(Estacionamento estacionamento) throws InvalidDataException {
 
-		System.out.print("Informe seu Nome: ");
-		nome = in.nextLine();
+        String nome;
+        int idade;
+        boolean especial;
+        int ehEspecial;
+        String marcaAutomovel;
+        String placaAutomovel;
+        boolean isMoto;
+        int moto;
+        int matricula;
+        int senha;
 
-		System.out.print("Informe sua Idade: ");
-		idade = in.nextInt();
+        System.out.print("Informe seu Nome: ");
+        nome = in.nextLine();
 
-		// Buffer cls
-		in.nextLine();
+        System.out.print("Informe sua Idade: ");
+        idade = in.nextInt();
 
-		System.out.print("Informe sua Matricula: ");
-		matricula = in.nextInt();
+        // Buffer cls
+        in.nextLine();
 
-		// Buffer cls
-		in.nextLine();
+        System.out.print("Informe sua Matricula: ");
+        matricula = in.nextInt();
 
-		System.out.print("Informe sua Senha: ");
-		senha = in.nextInt();
+        // Buffer cls
+        in.nextLine();
 
-		// Buffer cls
-		in.nextLine();
+        System.out.print("Informe sua Senha: ");
+        senha = in.nextInt();
 
-		System.out.print("Você é um aluno especial? (0 - Sim) / (1 - Não) ");
-		ehEspecial = in.nextInt();
+        // Buffer cls
+        in.nextLine();
 
-		// Buffer cls
-		in.nextLine();
+        System.out.print("Você é um aluno especial? (0 - Sim) / (1 - Não) ");
+        ehEspecial = in.nextInt();
 
-		if (ehEspecial == 0) {
-			especial = true;
-		} else {
-			especial = false;
-		}
+        // Buffer cls
+        in.nextLine();
 
-		System.out.print("Informe a Marca do Automovel: ");
-		marcaAutomovel = in.next();
+        if (ehEspecial == 0) {
+            especial = true;
+        } else {
+            especial = false;
+        }
 
-		System.out.print("Informe a Placa do Automovel: ");
-		placaAutomovel = in.next();
+        System.out.print("Informe a Marca do Automovel: ");
+        marcaAutomovel = in.next();
 
-		System.out.print("Seu automovel é uma moto? (0 - Sim) / (1 - Não) ");
-		moto = in.nextInt();
+        System.out.print("Informe a Placa do Automovel: ");
+        placaAutomovel = in.next();
 
-		if (moto == 0) {
-			isMoto = true;
-		} else {
-			isMoto = false;
-		}
+        System.out.print("Seu automovel é uma moto? (0 - Sim) / (1 - Não) ");
+        moto = in.nextInt();
 
-		Registro R = new Registro(nome, idade, matricula, senha, especial, marcaAutomovel, placaAutomovel, isMoto);
-		estacionamento.registrar(R);
-	}
-        
-	private static void saidaVeiculo(Estacionamento estacionamento) throws InvalidDataException{ //**
-		String placaAutomovel;
+        if (moto == 0) {
+            isMoto = true;
+        } else {
+            isMoto = false;
+        }
 
-		System.out.print("Informe a Placa do Automovel: ");
-		placaAutomovel = in.next();
-	}
+        Registro R = new Registro(nome, idade, matricula, senha, especial, marcaAutomovel, placaAutomovel, isMoto);
+        estacionamento.registrar(R);
+    }
+
+    private static void saidaVeiculo(Estacionamento estacionamento) throws InvalidDataException { //**
+        String placaAutomovel;
+        boolean sai;
+        System.out.print("Informe a Placa do Automovel: ");
+        placaAutomovel = in.next();
+
+        sai = estacionamento.retiraVeiculoGaragem(placaAutomovel);
+
+        if (sai == true) {
+            System.out.println("Veículo Removido");
+        }
+
+    }
+
+    private static void listarCarros(Estacionamento estacionamento) throws InvalidDataException {
+        estacionamento.listarVeiculosGaragem();
+    }
 }
