@@ -12,7 +12,17 @@ public class Estacionamento { // 50 vagas
     Garagem aEspecial = new Garagem(10);
     HashMap<Integer, Registro> aRegistros = new HashMap<>();
     
-
+    //Aplicando o Singleton
+    private final Estacionamento instancia = getInstancia();
+    
+    private Estacionamento getInstancia(){
+        
+        if(this.instancia == null){
+            Estacionamento e = new Estacionamento(); //java.lang.StackOverflowError
+            return e;   
+        }  
+        return this.instancia;
+    }
     public boolean verificarVaga(Registro veiculo) {
 
         Automovel auto = veiculo.getaAutomovel();

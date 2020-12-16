@@ -5,7 +5,7 @@ import br.com.unicap.exception.InvalidDataException;
 public class Aluno {
 
     private static final int IDADE_MIN = 18;
-    private static final int MATRICULA_MIN = 1000000000;
+    private static final int MATRICULA_MIN = 1000000000; //para entrar na validação da Matricula como se fosse a matricula da UNICAP
     private static final int MATRICULA_MAX = 2099999999;
     private static final int SENHA_MIN = 100000;
     private static final int SENHA_MAX = 999999;
