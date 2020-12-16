@@ -1,7 +1,10 @@
 package br.com.unicap.estacionamento;
 
 import java.util.HashMap;
-
+/**
+ *
+ * @author Catatau
+ */
 public class Garagem {
 
     private HashMap<String, Automovel> aGaragem = new HashMap<String, Automovel>();

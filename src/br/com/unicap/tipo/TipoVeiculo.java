@@ -1,5 +1,8 @@
 package br.com.unicap.tipo;
-
+/**
+ *
+ * @author Catatau
+ */
 public enum TipoVeiculo {
     ESPECIAL(1), MOTO(2), CARRO(3);
 

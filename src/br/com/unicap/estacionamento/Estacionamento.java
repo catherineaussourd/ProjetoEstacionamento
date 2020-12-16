@@ -4,25 +4,17 @@ import br.com.unicap.repositorio.Registro;
 import br.com.unicap.tipo.TipoVeiculo;
 
 import java.util.HashMap;
-
-public class Estacionamento { // 50 vagas
+/**
+ *
+ * @author Catatau
+ */
+public final class Estacionamento { // 50 vagas
 
     Garagem aCarro = new Garagem(25);
     Garagem aMoto = new Garagem(15);
     Garagem aEspecial = new Garagem(10);
     HashMap<Integer, Registro> aRegistros = new HashMap<>();
-    
-    //Aplicando o Singleton
-    private final Estacionamento instancia = getInstancia();
-    
-    private Estacionamento getInstancia(){
-        
-        if(this.instancia == null){
-            Estacionamento e = new Estacionamento(); //java.lang.StackOverflowError
-            return e;   
-        }  
-        return this.instancia;
-    }
+
     public boolean verificarVaga(Registro veiculo) {
 
         Automovel auto = veiculo.getaAutomovel();
@@ -69,7 +61,8 @@ public class Estacionamento { // 50 vagas
         return false;
 
     }
-    public void listarVeiculosGaragem(){
+
+    public void listarVeiculosGaragem() {
         aCarro.listar();
         System.out.println();
         aMoto.listar();

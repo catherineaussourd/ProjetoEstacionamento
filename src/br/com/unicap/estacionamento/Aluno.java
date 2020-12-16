@@ -1,7 +1,10 @@
 package br.com.unicap.estacionamento;
 
 import br.com.unicap.exception.InvalidDataException;
-
+/**
+ *
+ * @author Catatau
+ */
 public class Aluno {
 
     private static final int IDADE_MIN = 18;

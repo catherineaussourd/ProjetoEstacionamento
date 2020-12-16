@@ -1,19 +1,20 @@
 package br.com.unicap.estacionamento;
-
+/**
+ *
+ * @author Catatau
+ */
 public class Automovel {
 
     String aMarca;
     String aPlaca;
-    boolean aMoto;
 
-    public Automovel(String marca, String placa, boolean moto) {
+    public Automovel(String marca, String placa) {
         if (marca != null) {
             this.aMarca = marca;
         }
         if (placa != null) {
             this.aPlaca = placa;
         }
-        this.aMoto = moto;
     }
 
     public String getMarca() {
@@ -36,13 +37,6 @@ public class Automovel {
         }
     }
 
-    public boolean isMoto() {
-        return this.aMoto;
-    }
-
-    public void setMoto(boolean moto) {
-        this.aMoto = moto;
-    }
     
     public String toString(){
         return "Marca: " + this.getMarca() + "\nPlaca: " + this.getPlaca();
