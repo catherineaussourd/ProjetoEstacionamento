@@ -14,6 +14,8 @@ import br.com.unicap.repositorio.Registro;
  *
  * @author Catatau
  */
+
+//IMPLEMENTANDO O FACADE
 public class Facade {
     
     //SINGLETON DENTRO DO FACADE

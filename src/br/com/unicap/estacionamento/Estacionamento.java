@@ -1,74 +1,55 @@
 package br.com.unicap.estacionamento;
-
+import br.com.unicap.repositorio.EstacionamentoRepositorio;
+import br.com.unicap.repositorio.IEstacionamentoRepositorio;
+import br.com.unicap.repositorio.IRegistroRepositorio;
 import br.com.unicap.repositorio.Registro;
+import br.com.unicap.repositorio.RegistroRepositorio;
+import br.com.unicap.tipo.TipoVaga;
 import br.com.unicap.tipo.TipoVeiculo;
 
-import java.util.HashMap;
 /**
  *
  * @author Catatau
  */
 public final class Estacionamento { // 50 vagas
-
-    Garagem aCarro = new Garagem(25);
-    Garagem aMoto = new Garagem(15);
-    Garagem aEspecial = new Garagem(10);
-    HashMap<Integer, Registro> aRegistros = new HashMap<>();
-
+    private IEstacionamentoRepositorio estacionamentoRepositorio;
+    private IRegistroRepositorio registroRepositorio;
+    
+    public Estacionamento() {
+       estacionamentoRepositorio = new EstacionamentoRepositorio();
+       registroRepositorio = new RegistroRepositorio();
+    }
+    
     public boolean verificarVaga(Registro veiculo) {
-
+        
         Automovel auto = veiculo.getaAutomovel();
         boolean hasVaga = false;
 
-        switch (veiculo.getaTipo()) {
-            case ESPECIAL: {
-                hasVaga = addVeiculoGaragem(auto, aEspecial);
-                break;
-            }
-            case MOTO: {
-                hasVaga = addVeiculoGaragem(auto, aMoto);
-                break;
-            }
-            default: {
-                hasVaga = addVeiculoGaragem(auto, aCarro);
-                break;
+        if (veiculo.getEspecial()) {
+            hasVaga = estacionamentoRepositorio.addVeiculoGaragem(auto, TipoVaga.ESPECIAL);
+        }  
+        else {
+            switch (veiculo.getaTipo()) {
+                case MOTO: {
+                    hasVaga = estacionamentoRepositorio.addVeiculoGaragem(auto, TipoVaga.MOTO);
+                    break;
+                }
+                default: {
+                    hasVaga = estacionamentoRepositorio.addVeiculoGaragem(auto, TipoVaga.CARRO);
+                    break;
+                }
             }
         }
+        
         return hasVaga;
     }
 
-    private boolean addVeiculoGaragem(Automovel veiculo, Garagem garagem) {
-
-        if (garagem.hasVaga()) {
-            garagem.add(veiculo);
-            return true;
-        }
-        return false;
-    }
-
     public boolean retiraVeiculoGaragem(String placa) {
-
-        if (aCarro.busca(placa) != null) {
-            aCarro.remover(placa);
-            return true;
-        } else if (aMoto.busca(placa) != null) {
-            aMoto.remover(placa);
-            return true;
-        } else if (aEspecial.busca(placa) != null) {
-            aEspecial.remover(placa);
-            return true;
-        }
-        return false;
-
+        return estacionamentoRepositorio.retiraVeiculoGaragem(placa);
     }
 
     public void listarVeiculosGaragem() {
-        aCarro.listar();
-        System.out.println();
-        aMoto.listar();
-        System.out.println();
-        aEspecial.listar();
-        System.out.println();
+        estacionamentoRepositorio.listarVeiculosGaragem();
     }
 
     public TipoVeiculo TipoVaga(Registro registro) {
@@ -76,29 +57,23 @@ public final class Estacionamento { // 50 vagas
     }
 
     public Registro acessarRegistro(int pMatricula, int pSenha) {
-
-        Registro vRegistro = aRegistros.get(pMatricula);
-
-        if (vRegistro != null && vRegistro.validaSenha(pSenha)) {
-            return vRegistro;
-        }
-        return null;
+        return registroRepositorio.acessarRegistro(pMatricula, pSenha);
     }
 
     public void registrar(Registro pRegistro) {
-        aRegistros.putIfAbsent(pRegistro.getMatricula(), pRegistro);
+        registroRepositorio.registrar(pRegistro);
     }
 
     public Registro getRegistro(int pMatricula) {
-        return aRegistros.get(pMatricula);
+        return registroRepositorio.getRegistro(pMatricula);
     }
 
     public boolean verificarRegistro(Registro pRegistro) {
-        return aRegistros.containsKey(pRegistro.getMatricula());
+        return registroRepositorio.verificarRegistro(pRegistro);
     }
 
     public boolean verificarRegistro(int pMatricula) {
-        return aRegistros.containsKey(pMatricula);
+        return registroRepositorio.verificarRegistro(pMatricula);
     }
 
 }

@@ -3,12 +3,12 @@ package br.com.unicap.tipo;
  *
  * @author Catatau
  */
-public enum TipoVeiculo {
-    MOTO(1), CARRO(2);
+public enum TipoVaga {
+    MOTO(1), CARRO(2), ESPECIAL(3);
 
     private int tipo;
 
-    private TipoVeiculo(int tipo) {
+    private TipoVaga(int tipo) {
         this.tipo = tipo;
     }
 
@@ -20,8 +20,8 @@ public enum TipoVeiculo {
         this.tipo = tipo;
     }
 
-    public static TipoVeiculo valueOf(int value) {
-        for (TipoVeiculo v : TipoVeiculo.values()) {
+    public static TipoVaga valueOf(int value) {
+        for (TipoVaga v : TipoVaga.values()) {
             if (v.tipo == value) {
                 return v;
             }
